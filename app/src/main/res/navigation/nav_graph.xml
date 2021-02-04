@@ -35,5 +35,10 @@
         android:id="@+id/noteEditFragment"
         android:name="com.example.privatelesson.NoteEditFragment"
         android:label="@string/note_edit_title"
-        tools:layout="@layout/fragment_note_edit" />
+        tools:layout="@layout/fragment_note_edit" >
+        <argument
+            android:name="noteId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
 </navigation>

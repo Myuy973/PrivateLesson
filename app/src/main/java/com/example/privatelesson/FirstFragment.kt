@@ -44,6 +44,16 @@ class FirstFragment : Fragment() {
         val adapter = NotepadAdapter(notepad)
         binding.list.adapter = adapter
 
+        // 関数を入れる
+        adapter.setOnItemClickListener { id ->
+            id?.let {
+                val action =
+                    FirstFragmentDirections.actionToNoteEditFragment(it)
+                findNavController().navigate(action)
+            }
+        }
+
+        (activity as? NoteActivity)?.setFabVisible(View.VISIBLE)
 
     }
 
