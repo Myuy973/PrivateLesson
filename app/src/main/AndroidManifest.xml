@@ -19,14 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PrivateLesson">
         <activity
-            android:name=".ScheduleRealm"
-            android:label="@string/title_activity_schedule_realm"
+            android:name=".NoteActivity"
+            android:label="@string/title_activity_note"
             android:theme="@style/Theme.PrivateLesson.NoActionBar"></activity>
-        <activity
-            android:name=".NoteRealm"
-            android:label="@string/title_activity_note_realm"
-            android:theme="@style/Theme.PrivateLesson.NoActionBar" />
-        <activity android:name=".MyRealmActivity" />
         <activity android:name=".TakePictureActivity" />
         <activity android:name=".PictureList" />
         <activity android:name=".SecondActivity" />
