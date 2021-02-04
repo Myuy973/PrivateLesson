@@ -48,6 +48,7 @@ class DateDialog(private val onSelected: (String) -> Unit)
 
     // ダイアログの値を設定
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        // monthはカウントが0からのスタートのため+1することで補正している
         onSelected("$year/${month + 1}/$dayOfMonth")
     }
 
