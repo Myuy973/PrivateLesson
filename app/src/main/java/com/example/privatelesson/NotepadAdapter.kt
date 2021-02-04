@@ -28,7 +28,7 @@ class NotepadAdapter(data: OrderedRealmCollection<Notepad>) :
     class ViewHolder(cell: View) : RecyclerView.ViewHolder(cell) {
         // TextViewのID(位置)を代入
         val date: TextView = cell.findViewById(android.R.id.text1)
-        val text: TextView = cell.findViewById(android.R.id.text2)
+        val title: TextView = cell.findViewById(android.R.id.text2)
     }
 
     // セルが必要になるたびに呼び出される
@@ -46,7 +46,7 @@ class NotepadAdapter(data: OrderedRealmCollection<Notepad>) :
         val notepad: Notepad? = getItem(position)
         // それぞれ指定された位置に、必要な値を代入
         holder.date.text = DateFormat.format("yyyy/MM/dd HH:mm", notepad?.date)
-        holder.text.text = notepad?.text
+        holder.title.text = notepad?.title
         holder.itemView.setOnClickListener {
             listener?.invoke(notepad?.id)
         }

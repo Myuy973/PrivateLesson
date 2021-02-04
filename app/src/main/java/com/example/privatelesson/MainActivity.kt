@@ -47,10 +47,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-//        binding.textRealm.setOnClickListener {
-//            val intent = Intent(this, NoteRealm::class.java)
-//            startActivity(intent)
-//        }
+        binding.textRealm.setOnClickListener {
+            val intent = Intent(this, NoteActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 

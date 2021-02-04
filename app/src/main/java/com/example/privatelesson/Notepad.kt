@@ -8,5 +8,6 @@ open class Notepad : RealmObject() {
     @PrimaryKey
     var id: Long = 0
     var date: Date = Date()
-    var text: String = ""
+    var title: String = ""
+    var detail: String = ""
 }
