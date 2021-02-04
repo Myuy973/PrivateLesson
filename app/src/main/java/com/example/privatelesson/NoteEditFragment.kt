@@ -15,6 +15,7 @@ import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 import java.lang.IllegalArgumentException
+import java.sql.Time
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -53,9 +54,39 @@ class NoteEditFragment : Fragment() {
 
         }
 
+        binding.dateButton.setOnClickListener {
+            // date: onTimeSetのなかのonSelectの引数
+            DateDialog { date ->
+                binding.dateEdit.setText(date)
+            }.show(parentFragmentManager, "date_dialog")
+        }
+
+        binding.timeButton.setOnClickListener {
+            TimeDialog { date ->
+                binding.timeEdit.setText(date)
+            }.show(parentFragmentManager, "time_dialog")
+        }
+
         (activity as? NoteActivity)?.setFabVisible(View.INVISIBLE)
-        binding.save.setOnClickListener { saveNote(it) }
-        binding.delete.setOnClickListener { deleteNote(it) }
+        binding.save.setOnClickListener {
+            val dialog = ConfirmDialog("保存しますか？",
+                "保存", { saveNote(it) },
+                "キャンセル", {
+                    Snackbar.make(view, "キャンセルしました", Snackbar.LENGTH_SHORT)
+                        .show()
+                })
+            dialog.show(parentFragmentManager, "save_dialog")
+        }
+        binding.delete.setOnClickListener {
+            val dialog = ConfirmDialog("削除しますか？",
+                "削除", { deleteNote(it) },
+                "キャンセル", {
+                    Snackbar.make(view, "キャンセルしました", Snackbar.LENGTH_SHORT)
+                        .show()
+                })
+            dialog.show(parentFragmentManager, "delete_dialog")
+
+        }
 
     }
 
