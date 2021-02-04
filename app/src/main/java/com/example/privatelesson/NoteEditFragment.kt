@@ -47,10 +47,15 @@ class NoteEditFragment : Fragment() {
             binding.timeEdit.setText(DateFormat.format("HH:mm", notepad?.date))
             binding.titleEdit.setText(notepad?.title)
             binding.detailEdit.setText(notepad?.detail)
+            binding.delete.visibility = View.VISIBLE
+        } else {
+            binding.delete.visibility = View.INVISIBLE
+
         }
 
         (activity as? NoteActivity)?.setFabVisible(View.INVISIBLE)
         binding.save.setOnClickListener { saveNote(it) }
+        binding.delete.setOnClickListener { deleteNote(it) }
 
     }
 
@@ -89,6 +94,21 @@ class NoteEditFragment : Fragment() {
 
             }
         }
+
+    }
+
+    private fun deleteNote(view: View) {
+        realm.executeTransaction { db: Realm ->
+            db.where<Notepad>().equalTo("id", args.noteId)
+                ?.findFirst()
+                ?.deleteFromRealm()
+        }
+
+        Snackbar.make(view, "削除しました", Snackbar.LENGTH_SHORT)
+            .setActionTextColor(Color.YELLOW)
+            .show()
+
+        findNavController().popBackStack()
 
     }
 
